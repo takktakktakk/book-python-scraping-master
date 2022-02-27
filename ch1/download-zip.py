@@ -5,8 +5,8 @@ API = "https://api.aoikujira.com/zip/xml/get.php"
 
 # パラメータをURLエンコードする --- (※1)
 values = {
-    'fmt': 'xml',
-    'zn': '1500042'
+    'fmt': 'json', #data-format:xml or json
+    'zn': '3060433'
 }
 params = urllib.parse.urlencode(values)
 
