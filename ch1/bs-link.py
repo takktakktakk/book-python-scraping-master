@@ -14,7 +14,7 @@ soup = BeautifulSoup(html, 'html.parser')
 
 # findAll()メソッドで取り出す --- (※2)
 links = soup.find_all("a")
-
+print(type(links[0]))
 # リンク一覧を表示 --- (※3)
 for a in links:
     href = a.attrs['href']
