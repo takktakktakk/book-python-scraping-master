@@ -25,6 +25,8 @@ def enum_links(html, base):
 # ファイルをダウンロードし保存する関数 --- (※5)
 def download_file(url):
     o = urlparse(url)
+    print(o)
+    exit()
     savepath = "./" + o.netloc + o.path
     if re.search(r"/$", savepath): # ディレクトリならindex.html
         savepath += "index.html"
