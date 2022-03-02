@@ -25,27 +25,27 @@ def enum_links(html, base):
 # ファイルをダウンロードし保存する関数 --- (※5)
 def download_file(url):
     o = urlparse(url)
-    print(o)
-    exit()
     savepath = "./" + o.netloc + o.path
-    if re.search(r"/$", savepath): # ディレクトリならindex.html
+    if re.search(r"/$", savepath): # 正規表現で最後がスラッシュなら＝ディレクトリならindex.html
         savepath += "index.html"
     savedir = os.path.dirname(savepath)
-    # 既にダウンロード済み?
+    # # 既にダウンロード済み?
     if os.path.exists(savepath): return savepath
     # ダウンロード先のディレクトリを作成
-    if not os.path.exists(savedir):
+    if not os.path.exists(savedir):#ディレクトリがなければ
         print("mkdir=", savedir)
         makedirs(savedir)
     # ファイルをダウンロード --- (※6)
     try:
         print("download=", url)
-        urlretrieve(url, savepath)
-        time.sleep(1) # 礼儀として1秒スリープ --- (※7)
+        data = urlopen(url).read()
+        with open(savepath, mode="wb") as f:
+            f.write(data)
+            time.sleep(1) # 礼儀として1秒スリープ --- (※7)
         return savepath
     except:
         print("ダウンロード失敗:", url)
-        return None        
+        return None
 
 # HTMLを解析してダウンロードする関数 --- (※8)
 def analize_html(url, root_url):
@@ -71,7 +71,7 @@ def analize_html(url, root_url):
 
 if __name__ == "__main__":
     # URLを丸ごとダウンロード --- (※13)
-    url = "https://docs.python.jp/3.6/library/"
+    url = "https://docs.python.jp/3.9/library/"
     analize_html(url, url)
 
 
