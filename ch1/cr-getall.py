@@ -11,6 +11,7 @@ proc_files = {}
 
 # HTML内にあるリンクを抽出する関数 --- (※3)
 def enum_links(html, base):
+    links = []
     soup = BeautifulSoup(html, "html.parser")
     links = soup.select("link[rel='stylesheet']") # CSS
     links += soup.select("a[href]") # リンク

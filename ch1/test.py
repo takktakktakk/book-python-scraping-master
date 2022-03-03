@@ -1,3 +1,4 @@
-st = "Hello, Python and Perl and Ruby and more."
-fd = st.find('P')
-print(fd)
+i = "test"
+i += "test2"
+
+print(i)
