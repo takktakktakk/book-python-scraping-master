@@ -1,13 +1,13 @@
-from selenium.webdriver import Firefox, FirefoxOptions
+from selenium.webdriver import Chrome,ChromeOptions
 
 url = "https://www.aozora.gr.jp/cards/000081/files/46268_23911.html"
 
 # Firefoxをヘッドレスモードを有効にする --- (※1)
-options = FirefoxOptions()
+options = ChromeOptions()
 options.add_argument('-headless')
 
 # Firefoxを起動する --- (※2)
-browser = Firefox(options=options)
+browser = Chrome(options=options)
 
 # URLを読み込む --- (※3)
 browser.get(url)

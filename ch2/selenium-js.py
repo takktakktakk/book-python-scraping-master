@@ -1,13 +1,14 @@
-from selenium.webdriver import Firefox, FirefoxOptions
+# coding:utf-8
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver import Chrome,ChromeOptions
+from time import sleep
+import chromedriver_binary
 
-# Firefoxを起動
-options = FirefoxOptions()
+
+options =ChromeOptions()
 options.add_argument('-headless')
-browser = Firefox(options=options)
+browser = Chrome(options=options)
 
-# 適当なWebサイトを開く
-browser.get("https://google.com")
-
-# JavaScriptを実行
 r = browser.execute_script("return 100 + 50")
 print(r)
