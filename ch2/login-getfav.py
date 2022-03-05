@@ -1,5 +1,6 @@
 # 作詞掲示板にログインしてお気に入りの詞を取得する
 import requests
+from requests.exceptions import RequestException
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
@@ -19,7 +20,10 @@ login_info = {
 }
 url_login = "https://uta.pw/sakusibbs/users.php?action=login&m=try"
 res = session.post(url_login, data=login_info)
-res.raise_for_status() # エラーならここで例外を発生させる
+try:
+    res.raise_for_status()
+except RequestException as e:
+    print(e.response.text)# エラーならここで例外を発生させる
 
 # マイページのURLをピックアップする --- (※4)
 soup = BeautifulSoup(res.text, "html.parser")
@@ -28,12 +32,15 @@ if a is None:
     print("マイページが取得できませんでした")
     quit()
 # 相対URLを絶対URLに変換
-url_mypage = urljoin(url_login, a.attrs["href"]) 
+url_mypage = urljoin(url_login, a.attrs["href"])
 print("マイページ=", url_mypage)
 
 # マイページにアクセス --- (※5)
 res = session.get(url_mypage)
-res.raise_for_status()
+try:
+    res.raise_for_status()
+except RequestException as e:
+    print(e.response.text)
 
 # お気に入りの詞のタイトルを列挙 --- (※6)
 soup = BeautifulSoup(res.text, "html.parser")
