@@ -10,6 +10,8 @@ PASS = "ipCU12ySxI"
 
 # セッションを開始 --- (※2)
 session = requests.session()
+# リクエストヘッダーを設定しないとスクレイピングとバレるため偽装
+headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36" ,"Accept": "text/html,application/xhtml+xml,application/xml; q=0.9,image/webp,image/apng,*/*;q=0.8"}
 
 # ログイン --- (※3)
 login_info = {
@@ -19,7 +21,7 @@ login_info = {
     "mml_id": "0"              # ログイン時に指定する値
 }
 url_login = "https://uta.pw/sakusibbs/users.php?action=login&m=try"
-res = session.post(url_login, data=login_info)
+res = session.post(url_login, headers = headers, data=login_info)
 try:
     res.raise_for_status()
 except RequestException as e:

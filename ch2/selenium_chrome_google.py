@@ -26,8 +26,9 @@ assert 'Python' in driver.title
 driver.save_screenshot('chrome_search_results.png')
 
 # 検索結果を表示する。
-for a in driver.find_elements(by=By.TAG_NAME, value="a"):
-    print(a.text)
-    print(a.get_attribute('href'))
+for elem_h3 in driver.find_elements_by_xpath('//a/h3'):
+    elem_a = elem_h3.find_element_by_xpath('..') 
+    print(elem_h3.text)
+    print(elem_a.get_attribute('href'))
 
 driver.quit()  # ブラウザーを終了する。

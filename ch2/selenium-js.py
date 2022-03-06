@@ -1,9 +1,6 @@
 # coding:utf-8
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver import Chrome,ChromeOptions
-from time import sleep
-import chromedriver_binary
+
 
 
 options =ChromeOptions()
