@@ -1,6 +1,7 @@
 # BeautifulSoupを利用してHTMLを解析 --- (※1)
 from bs4 import BeautifulSoup
-html = open("eki-link.html", encoding="utf-8").read()
+
+html = open("ch2/eki-link.html", encoding="utf-8").read()
 soup = BeautifulSoup(html, "html.parser")
 
 # テーブルを解析する --- (※2)
@@ -11,6 +12,8 @@ table = soup.select_one("table")
 
 # <tr>タグを得る --- (※4)
 tr_list = table.find_all("tr")
+print(tr_list)
+
 for tr in tr_list:
     # <td>あるいは<th>タグを得る --- (※5)
     result_row = []

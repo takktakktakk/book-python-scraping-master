@@ -2,7 +2,7 @@ import urllib.request
 
 # URLと保存パスを指定
 url = "https://uta.pw/shodou/img/28/214.png"
-savename = "test.png"
+savename = "./ch1/test.png"
 
 # ダウンロード --- (※1)
 mem = urllib.request.urlopen(url).read()

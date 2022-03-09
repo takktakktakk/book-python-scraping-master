@@ -10,7 +10,7 @@ PASS = "ipCU12ySxI"
 
 # セッションを開始 --- (※2)
 session = requests.session()
-# リクエストヘッダーを設定しないとスクレイピングとバレるため偽装
+# リクエストヘッダーを設定しないとスクレイピングとバレるため偽装。
 headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36" ,"Accept": "text/html,application/xhtml+xml,application/xml; q=0.9,image/webp,image/apng,*/*;q=0.8"}
 
 # ログイン --- (※3)

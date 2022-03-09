@@ -2,7 +2,7 @@
 from bs4 import BeautifulSoup
 
 # 解析対象となるHTMLを読み込む --- (※2)
-html = open("eki-link.html", encoding="utf-8").read()
+open("ch2/eki-link.html", encoding="utf-8").read()
 
 # HTMLを解析する --- (※3)
 soup = BeautifulSoup(html, "html.parser")

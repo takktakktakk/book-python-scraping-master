@@ -35,9 +35,11 @@ WebDriverWait(browser, 10).until(
 a = browser.find_element(by=By.CSS_SELECTOR, value=".islogin a")
 url_mypage = a.get_attribute('href')
 print("マイページのURL=", url_mypage)
-
 # マイページを表示 --- (※7)
 browser.get(url_mypage)
+browser.execute_script('document.getElementById("mmlist").scrollIntoView(true)')
+
+browser.save_screenshot("./ch2/selenium_login.png")
 
 # お気に入りのタイトルを列挙 --- (※8)
 links = browser.find_elements(by=By.CSS_SELECTOR, value="#favlist li > a")
