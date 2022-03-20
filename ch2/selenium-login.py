@@ -29,7 +29,8 @@ frm.submit()
 print("情報を入力してログインボタンを押しました")
 # ページのロード完了まで待機 --- (※5)
 WebDriverWait(browser, 10).until(
-    EC.presence_of_element_located((By.CSS_SELECTOR, ".islogin")))
+    EC.presence_of_element_located((By.CSS_SELECTOR, ".islogin"))
+)
 
 # マイページのURLを得る --- (※6)
 a = browser.find_element(by=By.CSS_SELECTOR, value=".islogin a")
@@ -48,5 +49,4 @@ for a in links:
     title = a.text
     print("-", title, ">", href)
 
-
-browser.quit() 
+browser.quit()

@@ -31,4 +31,3 @@ for name in cities:
     print("| 気圧=", data["main"]["pressure"])
     print("| 風速度=", data["wind"]["speed"])
     print("")
-

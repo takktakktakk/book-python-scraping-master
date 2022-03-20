@@ -5,9 +5,11 @@ import os, os.path, time
 import random
 
 # リンクを抽出する --- (※1)
-html = open("ch2/eki-link.html", encoding="utf-8").read()
-soup = BeautifulSoup(html, "html.parser")
-links = soup.select("a[href]")
+with open("ch2/eki-link.html", encoding="utf-8") as file:
+    html = file.read()
+
+bs = BeautifulSoup(html, "html.parser")
+links = bs.select("a[href]")
 result = []
 for a in links:
     href = a.attrs["href"]
@@ -15,7 +17,7 @@ for a in links:
     result.append((title, href))
 
 # リンク先をダウンロードする --- (※2)
-savepath = "./ch2/DL";
+savepath = "./ch2/DL"
 if not os.path.exists(savepath):
     os.mkdir(savepath)
 

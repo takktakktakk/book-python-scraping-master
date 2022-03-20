@@ -1,17 +1,18 @@
-import urllib.request as req
+import urllib.request as request
 import datetime
 import json
 
-# web APIにアクセス
+# Web APIにアクセス
 API = "https://api.aoikujira.com/kawase/get.php?code=USD&format=json"
-with req.urlopen(API) as res:
-    json_str = res.read().decode('utf-8')
+
+with request.urlopen(API) as req:
+    json_str = req.read().decode("utf-8")
     data = json.loads(json_str)
-    print("1USD: {jpy}".format(jpy = data["JPY"]) + "円")
 
-# 保存ファイル名を決定
-t = datetime.datetime.now()
-fname = "./ch2/" + t.strftime('%Y-%m-%d_%H:%M:%S') + ".json"
+print("1USD=" + data["JPY"] + "JPY")
 
-with open(fname, "w", encoding="utf-8") as f:
+#保存ファイル名を決定
+t = datetime.date.today()
+fname = t.strftime("%Y-%m-%d") + ".json"
+with open (fname, "w", encoding="utf8") as f:
     f.write(json_str)

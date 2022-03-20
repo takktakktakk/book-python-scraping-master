@@ -39,9 +39,10 @@ def download_file(url):
     # ファイルをダウンロード --- (※6)
     try:
         print("download=", url)
-        data = urlopen(url).read()
-        with open(savepath, mode="wb") as f:
-            f.write(data)
+        with  urlopen(url) as data:
+            html = data.read()
+        with open(savepath, mode="wb") as file:
+            file.write(html)
             time.sleep(1) # 礼儀として1秒スリープ --- (※7)
         return savepath
     except:
@@ -54,10 +55,13 @@ def analize_html(url, root_url):
     if savepath is None: return
     if savepath in proc_files: return # 解析済みなら処理しない --- (※9)
     proc_files[savepath] = True
+
     print("analize_html=", url)
     # リンクを抽出 --- (※10)
-    html = open(savepath, "r", encoding="utf-8").read()
-    links = enum_links(html, url)
+    with open(savepath, "r", encoding="utf-8") as file:
+        html = file.read()
+        links = enum_links(html, url)
+    
     for link_url in links:
         # リンクがルート以外のパスを指していたら無視 --- (※11)
         if link_url.find(root_url) != 0:
