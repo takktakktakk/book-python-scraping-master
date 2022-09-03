@@ -13,3 +13,4 @@ jpy = soup.select_one("jpy").string
 print("usd/jpy=", jpy)
 print("\n")
 print("a")
+
