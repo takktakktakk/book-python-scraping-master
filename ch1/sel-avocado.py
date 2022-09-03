@@ -1,7 +1,6 @@
-from bs4 import BeautifulSoup
-
-with open("fruits-vegetables.html", encoding="utf-8") as fp:
-    soup = BeautifulSoup(fp, "html.parser")
+from bs4 import BeautifulSoup 
+fp = open("fruits-vegetables.html", encoding="utf-8")
+soup = BeautifulSoup(fp, "html.parser")
 
 # CSSセレクタで選び出す
 print(soup.select("li")[7].string) #(1)
@@ -14,5 +13,6 @@ cond = {"data-lo":"us", "class":"black"}
 print(soup.find("li", cond).string)
 
 # findメソッドを二度組み合わせる --- (6)
-print(soup.find(id="ve-list").find("li", cond).string)
+print(soup.find(id="ve-list")
+          .find("li", cond).string) 
 

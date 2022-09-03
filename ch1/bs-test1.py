@@ -12,7 +12,7 @@ html = """
 
 # HTMLを解析する --- (※3)
 soup = BeautifulSoup(html, 'html.parser')
-print(soup)
+
 # 任意の部分を抽出する --- (※4)
 h1 = soup.html.body.h1
 p1 = soup.html.body.p

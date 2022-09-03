@@ -1,12 +1,11 @@
 import requests
-import json
+import json, pprint
 
 # APIキーの指定 - 以下を書き換えてください★ --- (※1)
-apikey = "a2c980273a94e346a10adfd3e12b1673"
+apikey = "474d59dd890c4108f62f192e0c6fce01"
 
 # 天気を調べたい都市の一覧 --- (※2)
 cities = ["Tokyo,JP", "London,UK", "New York,US"]
-
 # APIのひな型 --- (※3)
 api = "https://api.openweathermap.org/data/2.5/weather?q={city}&APPID={key}"
 
@@ -21,7 +20,6 @@ for name in cities:
     r = requests.get(url)
     # 結果はJSON形式なのでデコードする --- (※7)
     data = json.loads(r.text)
-    print(data)
     # 結果を画面に表示 --- (※8)
     print("+ 都市=", data["name"])
     print("| 天気=", data["weather"][0]["description"])
@@ -31,3 +29,4 @@ for name in cities:
     print("| 気圧=", data["main"]["pressure"])
     print("| 風速度=", data["wind"]["speed"])
     print("")
+

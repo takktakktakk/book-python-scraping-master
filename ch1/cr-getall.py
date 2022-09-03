@@ -11,7 +11,6 @@ proc_files = {}
 
 # HTML内にあるリンクを抽出する関数 --- (※3)
 def enum_links(html, base):
-    links = []
     soup = BeautifulSoup(html, "html.parser")
     links = soup.select("link[rel='stylesheet']") # CSS
     links += soup.select("a[href]") # リンク
@@ -27,27 +26,24 @@ def enum_links(html, base):
 def download_file(url):
     o = urlparse(url)
     savepath = "./" + o.netloc + o.path
-    if re.search(r"/$", savepath): # 正規表現で最後がスラッシュなら＝ディレクトリならindex.html
+    if re.search(r"/$", savepath): # ディレクトリならindex.html
         savepath += "index.html"
     savedir = os.path.dirname(savepath)
-    # # 既にダウンロード済み?
+    # 既にダウンロード済み?
     if os.path.exists(savepath): return savepath
     # ダウンロード先のディレクトリを作成
-    if not os.path.exists(savedir):#ディレクトリがなければ
+    if not os.path.exists(savedir):
         print("mkdir=", savedir)
         makedirs(savedir)
     # ファイルをダウンロード --- (※6)
     try:
         print("download=", url)
-        with  urlopen(url) as data:
-            html = data.read()
-        with open(savepath, mode="wb") as file:
-            file.write(html)
-            time.sleep(1) # 礼儀として1秒スリープ --- (※7)
+        urlretrieve(url, savepath)
+        time.sleep(1) # 礼儀として1秒スリープ --- (※7)
         return savepath
     except:
         print("ダウンロード失敗:", url)
-        return None
+        return None        
 
 # HTMLを解析してダウンロードする関数 --- (※8)
 def analize_html(url, root_url):
@@ -55,13 +51,10 @@ def analize_html(url, root_url):
     if savepath is None: return
     if savepath in proc_files: return # 解析済みなら処理しない --- (※9)
     proc_files[savepath] = True
-
     print("analize_html=", url)
     # リンクを抽出 --- (※10)
-    with open(savepath, "r", encoding="utf-8") as file:
-        html = file.read()
-        links = enum_links(html, url)
-    
+    html = open(savepath, "r", encoding="utf-8").read()
+    links = enum_links(html, url)
     for link_url in links:
         # リンクがルート以外のパスを指していたら無視 --- (※11)
         if link_url.find(root_url) != 0:
@@ -76,7 +69,7 @@ def analize_html(url, root_url):
 
 if __name__ == "__main__":
     # URLを丸ごとダウンロード --- (※13)
-    url = "https://docs.python.jp/3.9/library/"
+    url = "https://docs.python.jp/3.6/library/"
     analize_html(url, url)
 
 

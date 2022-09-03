@@ -5,7 +5,6 @@ html = """
 <html><body>
 <div id="meigen">
   <h1>トルストイの名言</h1>
-  <h1>これは呼ばれない</h1>
   <ul class="items">
     <li>汝の心に教えよ、心に学ぶな</li>
     <li>謙虚な人は誰からも好かれる。</li>
